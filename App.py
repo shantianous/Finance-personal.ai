@@ -8,6 +8,8 @@ import seaborn as sns
 
 # ----- Page Config -----
 st.set_page_config(page_title="EconoPsych Finance AI", layout="centered")
+
+# ----- Style -----
 st.markdown("""
 <style>
 body {
@@ -76,7 +78,8 @@ if st.sidebar.button("Add Today"):
         'Impulse Level': impulse_today
     }
     new_row['Bias Detected'] = detect_bias(new_row)
-    data = data.append(new_row, ignore_index=True)
+    # Fixed for pandas 2.x
+    data = pd.concat([data, pd.DataFrame([new_row])], ignore_index=True)
 
 # ----- Nudges -----
 st.subheader("Personalized Nudges")
