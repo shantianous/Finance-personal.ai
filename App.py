@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # ----- Page Config -----
-st.set_page_config(page_title="EconoPsych Finance AI", layout="centered")
+st.set_page_config(page_title="Smart spending assistant", layout="centered")
 
 # ----- Style -----
 st.markdown("""
@@ -28,7 +28,7 @@ h1, h2, h3 {
 """, unsafe_allow_html=True)
 
 # ----- Title -----
-st.title("EconoPsych Finance AI")
+st.title("Smart Spending Assistant")
 st.subheader("Optimize your spending with behavioral insights")
 
 # ----- Simulated Data -----
@@ -106,6 +106,7 @@ ax2.bar(data['Day'], data['Cumulative Savings'], color='#D32F2F')
 st.pyplot(fig2)
 
 st.subheader("Bias Heatmap")
+fig3, ax3 = plt.subplots(figsize=(8,4))
 bias_matrix = pd.get_dummies(data['Bias Detected'].str.get_dummies(sep=', '))
-sns.heatmap(bias_matrix.T, annot=True, cmap='Reds', cbar=False)
-st.pyplot()
+sns.heatmap(bias_matrix.T, annot=True, cmap='Reds', cbar=False, ax=ax3)
+st.pyplot(fig3)
